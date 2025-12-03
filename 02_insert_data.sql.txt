@@ -1,0 +1,28 @@
+USE sistema_vendas;
+
+-- Inserir clientes
+INSERT INTO clientes (nome, email, telefone) VALUES
+('Carlos Silva', 'carlos@email.com', '11999990000'),
+('Ana Souza', 'ana@email.com', '11999990001'),
+('Marcos Lima', 'marcos@email.com', '11999990002');
+
+-- Inserir produtos
+INSERT INTO produtos (nome, preco, estoque) VALUES
+('Mouse Gamer', 79.90, 50),
+('Teclado Mecânico', 199.90, 20),
+('Monitor 24"', 899.00, 15),
+('Headset USB', 120.00, 30);
+
+-- Inserir pedidos
+INSERT INTO pedidos (cliente_id, data_pedido) VALUES
+(1, '2025-01-05'),
+(2, '2025-01-10'),
+(1, '2025-01-12');
+
+-- Inserir itens do pedido
+INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario) VALUES
+(1, 1, 2, 79.90),
+(1, 4, 1, 120.00),
+(2, 2, 1, 199.90),
+(3, 3, 1, 899.00),
+(3, 1, 1, 79.90);

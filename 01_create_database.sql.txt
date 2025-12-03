@@ -1,0 +1,39 @@
+-- Criar banco de dados
+DROP DATABASE IF EXISTS sistema_vendas;
+CREATE DATABASE sistema_vendas;
+USE sistema_vendas;
+
+-- Tabela de clientes
+CREATE TABLE clientes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(120),
+    telefone VARCHAR(20)
+);
+
+-- Tabela de produtos
+CREATE TABLE produtos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    estoque INT NOT NULL
+);
+
+-- Tabela de pedidos
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cliente_id INT NOT NULL,
+    data_pedido DATE NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+);
+
+-- Tabela de itens do pedido
+CREATE TABLE itens_pedido (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pedido_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10,2),
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+    FOREIGN KEY (produto_id) REFERENCES produtos(id)
+);

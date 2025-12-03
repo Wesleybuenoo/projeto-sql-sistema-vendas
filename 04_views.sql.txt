@@ -1,0 +1,16 @@
+USE sistema_vendas;
+
+-- View com resumo dos pedidos
+CREATE OR REPLACE VIEW vw_resumo_pedidos AS
+SELECT 
+    p.id AS pedido_id,
+    c.nome AS cliente,
+    p.data_pedido,
+    SUM(i.quantidade * i.preco_unitario) AS valor_total
+FROM pedidos p
+JOIN clientes c ON c.id = p.cliente_id
+JOIN itens_pedido i ON i.pedido_id = p.id
+GROUP BY p.id;
+
+-- Listar a view
+SELECT * FROM vw_resumo_pedidos;

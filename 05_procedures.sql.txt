@@ -1,0 +1,19 @@
+USE sistema_vendas;
+
+-- Procedure para atualizar estoque após venda
+DELIMITER $$
+
+CREATE PROCEDURE atualizar_estoque(
+    IN p_produto_id INT,
+    IN p_quantidade INT
+)
+BEGIN
+    UPDATE produtos
+    SET estoque = estoque - p_quantidade
+    WHERE id = p_produto_id;
+END $$
+
+DELIMITER ;
+
+-- Exemplo de uso
+CALL atualizar_estoque(1, 3);
